@@ -1,4 +1,12 @@
+# R files to avoid
+
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+#avoid addind html
+*.html
+
+#all zip files
+*.zip
