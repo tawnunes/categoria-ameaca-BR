@@ -42,14 +42,36 @@ tabela_especies <- extract_tables("./docs/lista_especies_ameacadas.pdf",
                                   pages = paginas, # especificação das páginas
                                   output = "data.frame") # formato do resultado
 
-# Obs.: O arquivo criado é uma lista o que significa que cada tabela é um item.
+# EXCLUIR DATA FRAMES DESNECESSÁRIOS -----
 
+# visualização
+lapply(tabela_especies, View)
+
+# Excluir
+
+# tabela_especies <- tabela_especies[-1] # Descomentar se necessário
+
+# conferindo se é o dataframe com o nome das colunas 
+View(tabela_especies[[1]])
 
 # TRANSFORMAR LISTA EM DATA FRAME ----
-teste_extracao <- tabela_especies[[1]]
 
+# RENOMEANDO COLUNAS
+
+# Capturando o nome das colunas contidos na primera parte da tabela
+nome_colunas <- colnames(tabela_especies[[1]])
+# Aplicando o mesmo nome de coluna em todas os data frames da lista
+to_df <- lapply(tabela_especies, setNames, nome_colunas)
+
+
+
+# TRANFORMANDO O RESULTADO EM UM DATA FRAME
+df_epecies <- bind_rows(to_df)
+
+
+# EXPORTANDO TABELA DE RESULTADOS -----
 if (!dir.exists("dados/processados")) dir.create("dados/processados")
 
-write.csv(teste_extracao, "dados/processados/teste_extracao.csv", 
+write.csv(df_epecies, "dados/processados/teste_extracao.csv", 
           row.names = FALSE)
 
