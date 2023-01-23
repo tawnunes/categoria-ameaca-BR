@@ -5,11 +5,15 @@
 # 
 # Autora: Tawane Yara Nunes
 # E-mail: taw.ynunes@gmail.com
-# -------------------------------------------------------------------------------
 
-# EXTRAIR DADOS DE TABELAS CONTIDAS EM ARQUIVO PDF
 
-# PACOTES ----
+# OBJETIVO -----------------------------------------------------------------------------
+
+# EXTRAIR DADOS DE TABELAS CONTIDAS EM ARQUIVO PDF REFERENTE A
+# PORTARIA MMA N° 148, DE 7 DE JUNHO DE 2022 DISPONÍVEL EM:
+
+
+# PACOTES ------------------------------------------------------------------------------
 
 # library(remotes) # para ser possível baixar o pacote tabulizer a partir do repositório 
 # no github
@@ -29,15 +33,24 @@ library(tidyverse) # instala outros pacores do R, principalmente para
 # Sys.setenv(JAVA_HOME="C:/Program Files/Java/jdk-18/")
 
 
-# EXTRAIR TABELA DO PDF ----
+# EXTRAIR TABELAS DO PDF POR GRUPO TAXONÔMICO ------------------------------------------------
 
-# criação de objeto com as páginas para facilitar entrada para usuário
-paginas <- c(98:101) 
+## FLORA -------------------------------------------------------------------------------------
 
-# extração das tabelas
-tabela_especies <- extract_tables("./docs/lista_especies_ameacadas.pdf", 
-                                  pages = paginas, # especificação das páginas
+# extração das tabelas referentes a flora listada na portaria n° 148
+
+flora_lista <- extract_tables("./docs/lista_especies_ameacadas.pdf", 
+                                  pages = c(2:80), # especificação das páginas
                                   output = "data.frame") # formato do resultado
+
+# Checar o número de colunas de todos os dataframes
+lapply(flora_lista, ncol) # todas deveriam ter o mesmo número de colunas 
+
+# Excluir colunas que contenham apenas NA
+# Erro gerado devido a formatação das colunas no pdf
+x <- lapply(flora_lista, function(x) x[,colSums(is.na(x)) != nrow(x)] )
+lapply(x, ncol)
+
 
 # EXCLUIR DATA FRAMES DESNECESSÁRIOS -----
 # visualização
