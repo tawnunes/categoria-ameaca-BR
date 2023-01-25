@@ -1,0 +1,31 @@
+# Algoritmo para verificação e confirmação do status de ameaça 
+# a nível nacional da fauna e flora brasileira
+# 
+# MBA em Data Science & Analytics - USP
+# 
+# Autora: Tawane Yara Nunes
+# E-mail: taw.ynunes@gmail.com
+# 
+# Requerimentos: execução do sprit "extrair_tabela_website.R"
+
+# PACOTES ESPECÍFICOS -----------------------------------------------------------------------
+
+library(tidyverse)
+
+
+# DATA CLEANING -----------------------------------------------------------------------------
+
+## FLORA ------------------------------------------------------------------------------------
+
+df_flora <- df_flora %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
+                                lista_anterior = ifelse(lista_anterior == "*", "sim", "nao")) %>%  # alterando marcação de listagem anterior
+                         filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
+# Estas linhas são geradas por cabeçalhos e outras informações na tabela
+
+## FAUNA --------------------------------------------------------------------------------------
+
+
+df_fauna <- df_fauna %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
+                                    lista_anterior = ifelse(lista_anterior == "*", "sim", "nao")) %>%  # alterando marcação de listagem anterior
+                             filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
+# Estas linhas são geradas por cabeçalhos e outras informações na tabela
