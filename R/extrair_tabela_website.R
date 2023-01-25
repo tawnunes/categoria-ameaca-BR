@@ -92,3 +92,12 @@ nomes_fauna <- c("ID", "lista_anterior", "ordem", "familia", "especie", "categor
 
 names(df_fauna) <- nomes_fauna
 
+
+# EXPORTANDO DADOS BRUTOS-------------------
+if (!dir.exists("dados/raw")) dir.create("dados/raw")
+
+write.csv(df_flora, "dados/raw/lista_flora_raw.csv", 
+          row.names = FALSE)
+
+write.csv(df_fauna, "dados/raw/lista_fauna_raw.csv", 
+          row.names = FALSE)

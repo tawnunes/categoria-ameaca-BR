@@ -12,6 +12,11 @@
 
 library(tidyverse)
 
+# IMPORTANTO DADOS BRUTOS -------------------------------------------------------------------
+
+df_flora <- read.csv("./dados/raw/lista_flora_raw.csv")
+
+df_fauna <- read.csv("./dados/raw/lista_fauna_raw.csv")
 
 # DATA CLEANING -----------------------------------------------------------------------------
 
@@ -29,3 +34,15 @@ df_fauna <- df_fauna %>% mutate(ID = as.numeric(ID), # transformando a coluna ID
                                     lista_anterior = ifelse(lista_anterior == "*", "sim", "nao")) %>%  # alterando marcação de listagem anterior
                              filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
 # Estas linhas são geradas por cabeçalhos e outras informações na tabela
+
+# EXPORTANDO OS DADOS GERADOS ---------------------------------------------------------------
+
+# EXPORTANDO TABELA DE RESULTADOS -----
+
+if (!dir.exists("dados/processados")) dir.create("dados/processados")
+
+write.csv(df_flora, "dados/processados/lista_flora.csv", 
+          row.names = FALSE)
+
+write.csv(df_fauna, "dados/processados/lista_fauna.csv", 
+          row.names = FALSE)
