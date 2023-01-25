@@ -37,19 +37,23 @@ library(tidyverse) # instala outros pacores do R, principalmente para
 
 ## FLORA -------------------------------------------------------------------------------------
 
+### FUNÇÃO EXTRACT_TABLES -----------
 # extração das tabelas referentes a flora listada na portaria n° 148
 
 flora_lista <- extract_tables("./docs/lista_especies_ameacadas.pdf", 
-                                  pages = c(2:80), # especificação das páginas
-                                  output = "data.frame") # formato do resultado
+                                  pages = c(2:8), # especificação das páginas
+                                  method = "stream",
+                                  output = "matrix") # formato do resultado
 
 # Checar o número de colunas de todos os dataframes
-lapply(flora_lista, ncol) # todas deveriam ter o mesmo número de colunas 
-
+lapply(flora_lista, ncol) # todas deveriam ter o mesmo número de colunas
+View(flora_lista[[6]])
 # Excluir colunas que contenham apenas NA
 # Erro gerado devido a formatação das colunas no pdf
-x <- lapply(flora_lista, function(x) x[,colSums(is.na(x)) != nrow(x)] )
-lapply(x, ncol)
+flora_semNA <- lapply(flora_lista, function(x) x[,colSums(is.na(x)) != nrow(x)] )
+lapply(flora_semNA, function(x) ncol(x) != 5)
+View(flora_semNA[[6]])
+
 
 
 # EXCLUIR DATA FRAMES DESNECESSÁRIOS -----
