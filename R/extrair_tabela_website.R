@@ -8,8 +8,8 @@
 
 # PACOTES ESPECÍFICOS -----------------------------------------------
 
-library(xml2)
-library(rvest)
+library(xml2) # ler o html do site selecionado
+library(rvest) # extrair os elementos do html
 library(tidyverse) # instala outros pacores do R, principalmente para 
 # Manipulação de dados
 
