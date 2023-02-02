@@ -8,7 +8,7 @@
 
 # PACOTES ESPECÍFICOS -----------------------------------------------
 
-library(xml2) # ler o html do site selecionado
+# library(xml2) # ler o html do site selecionado
 library(rvest) # extrair os elementos do html
 library(tidyverse) # instala outros pacores do R, principalmente para 
 # Manipulação de dados
@@ -21,7 +21,7 @@ url <- "https://www.in.gov.br/en/web/dou/-/portaria-mma-n-148-de-7-de-junho-de-2
 
 # EXTRAINDO TABELAS -------------------------------------------------
 
-tabelas_portaria <- url %>% 
+tabelas_portaria148 <- url %>% 
                     read_html() %>% 
                     html_nodes("table") %>% 
                     html_table(trim = T)
