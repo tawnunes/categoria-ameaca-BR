@@ -14,15 +14,15 @@ library(tidyverse)
 
 # IMPORTANTO DADOS BRUTOS -------------------------------------------------------------------
 
-df_flora <- read.csv("./dados/raw/lista_flora_raw.csv")
+df_flora_P148 <- read.csv("./dados/raw/lista_flora_raw.csv")
 
-df_fauna <- read.csv("./dados/raw/lista_fauna_raw.csv")
+df_fauna_P148 <- read.csv("./dados/raw/lista_fauna_raw.csv")
 
 # DATA CLEANING -----------------------------------------------------------------------------
 
 ## FLORA ------------------------------------------------------------------------------------
 
-df_flora <- df_flora %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
+df_flora_P148 <- df_flora_P148 %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
                                 lista_anterior = ifelse(lista_anterior == "*", "sim", "nao"),# alterando marcação de listagem anterior
                                 grupo = "Flora") %>% # marcando o grupo
                          filter(!is.na(ID))  # excluindo linhas que não contém ID númerico
@@ -31,7 +31,7 @@ df_flora <- df_flora %>% mutate(ID = as.numeric(ID), # transformando a coluna ID
 ## FAUNA --------------------------------------------------------------------------------------
 
 
-df_fauna <- df_fauna %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
+df_fauna_P148 <- df_fauna_P148 %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
                                     lista_anterior = ifelse(lista_anterior == "*", "sim", "nao"),# alterando marcação de listagem anterior
                                 grupo = "Fauna") %>%  # marcando o grupo 
                              filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
@@ -39,7 +39,9 @@ df_fauna <- df_fauna %>% mutate(ID = as.numeric(ID), # transformando a coluna ID
 
 # UNINDO OS DOIS GRUPOS ---------------------------------------------------------------------
 
-lista_ameaca_BR <- df_fauna %>% bind_rows(df_flora) %>% select(c(grupo, especie, familia, ordem, categoria, lista_anterior)) 
+lista_ameaca_BR_P148 <- df_fauna_P148 %>% bind_rows(df_flora_P148) %>% 
+                                          select(c(grupo, especie, familia, ordem, categoria, lista_anterior)) %>% 
+                                          rename(Portaria_148_07.06.22 = categoria)
 
 
 
@@ -47,13 +49,13 @@ lista_ameaca_BR <- df_fauna %>% bind_rows(df_flora) %>% select(c(grupo, especie,
 
 # EXPORTANDO TABELA DE RESULTADOS -----
 
-if (!dir.exists("dados/processados")) dir.create("dados/processados")
+if (!dir.exists("dados/processados/portaria_148")) dir.create("dados/processados/portaria_148")
 
-write.csv(df_flora, "dados/processados/lista_flora.csv", 
+write.csv(df_flora_P148, "dados/processados/portaria_148/lista_flora_148.csv", 
           row.names = FALSE)
 
-write.csv(df_fauna, "dados/processados/lista_fauna.csv", 
+write.csv(df_fauna_P148, "dados/processados/portaria_148/lista_fauna.csv", 
           row.names = FALSE)
 
-write.csv(lista_ameaca_BR, "dados/processados/lista_especies_ameacadas.csv", 
+write.csv(lista_ameaca_BR_148, "dados/processados/portaria_148/lista_especies_ameacadas_P148.csv", 
           row.names = FALSE)
