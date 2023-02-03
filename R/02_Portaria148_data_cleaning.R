@@ -34,7 +34,8 @@ flora_P148 <- flora_P148 %>% mutate(ID = as.numeric(ID), # transformando a colun
 
 ### FAUNA TERRESTRE -----------------------------------------------------------------------------------------------------------
 
-fauna_terrestre_P148 <- fauna_terrestre_P148 %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
+fauna_terrestre_ameacada <- fauna_terrestre_P148 %>% filter(categoria != "EX"|categoria != "RE") %>% 
+                                                 mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
                                                         lista_anterior = ifelse(lista_anterior == "*", "sim", "nao"),# alterando marcação de listagem anterior
                                                         componente = "Fauna", # marcando o componente
                                                         grupo = ifelse(ID >= 1 & ID <= 275, "Invertebrados terrestres", 
@@ -45,6 +46,13 @@ fauna_terrestre_P148 <- fauna_terrestre_P148 %>% mutate(ID = as.numeric(ID), # t
                                                                                                    NA)))))) %>%  # marcando os grupo
                                                  filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
 # Estas linhas são geradas por cabeçalhos e outras informações na tabela
+
+extintas <- fauna_terrestre_P148 %>% filter(categoria == "EX"|categoria == "RE") %>%
+                                     mutate(ID = as.numeric(ID),
+                                            grupo = ifelse(ordem == "Anura", "Anfibios",
+                                                    ifelse(ordem == "Charadriiformes" | ordem == "Passeriformes" |
+                                                            ordem == "Strigiformes"| ordem == "Psittaciformes", 
+                                                           "Aves", "Mamiferos")))
 
 ### FAUNA AQUATICA ---------------------------------------------------------------------------------------------------
 
@@ -59,23 +67,23 @@ fauna_aquatica_P148 <- fauna_aquatica_P148 %>% mutate(ID = as.numeric(ID), # tra
 
 # UNINDO OS DOIS GRUPOS ---------------------------------------------------------------------
 
-lista_ameaca_BR_P148 <- df_fauna_P148 %>% bind_rows(df_flora_P148) %>% 
-                                          select(c(grupo, especie, familia, ordem, categoria, lista_anterior)) %>% 
+lista_ameaca_BR_P148 <- fauna_terrestre_ameacada %>% bind_rows(list(extintas,fauna_aquatica_P148, flora_P148)) %>% 
+                                          select(c(componente,grupo,familia, ordem, especie, categoria, lista_anterior)) %>% 
                                           rename(categoria_portaria148 = categoria)
 
 
 
 # EXPORTANDO OS DADOS GERADOS ---------------------------------------------------------------
 
-# EXPORTANDO TABELA DE RESULTADOS -----
+# EXPORTANDO TABELA DE RESULTADOS -----------------------------------------------------------
 
 if (!dir.exists("dados/processados/portaria_148")) dir.create("dados/processados/portaria_148")
 
-write.csv(df_flora_P148, "dados/processados/portaria_148/lista_flora_148.csv", 
+write.csv(flora_P148, "dados/processados/portaria_148/lista_flora_148.csv", 
           row.names = FALSE)
 
-write.csv(df_fauna_P148, "dados/processados/portaria_148/lista_fauna.csv", 
+write.csv(bind_rows(list(fauna_terrestre_ameacada, fauna_aquatica_P148, extintas)), "dados/processados/portaria_148/lista_fauna_148.csv", 
           row.names = FALSE)
 
-write.csv(lista_ameaca_BR_148, "dados/processados/portaria_148/lista_especies_ameacadas_P148.csv", 
+write.csv(lista_ameaca_BR_P148, "dados/processados/portaria_148/lista_especies_ameacadas_P148.csv", 
           row.names = FALSE)
