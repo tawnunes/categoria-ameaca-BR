@@ -14,34 +14,54 @@ library(tidyverse)
 
 # IMPORTANTO DADOS BRUTOS -------------------------------------------------------------------
 
-df_flora_P148 <- read.csv("./dados/raw/lista_flora_raw.csv")
+flora_P148 <- read.csv("./dados/raw/lista_flora_raw.csv")
 
-df_fauna_P148 <- read.csv("./dados/raw/lista_fauna_raw.csv")
+fauna_terrestre_P148 <- read.csv("./dados/raw/lista_fauna_terrestre_raw.csv")
+
+fauna_aquatica_P148 <- read.csv("./dados/raw/lista_fauna_aquatica_raw.csv")
 
 # DATA CLEANING -----------------------------------------------------------------------------
 
 ## FLORA ------------------------------------------------------------------------------------
 
-df_flora_P148 <- df_flora_P148 %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
+flora_P148 <- flora_P148 %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
                                 lista_anterior = ifelse(lista_anterior == "*", "sim", "nao"),# alterando marcação de listagem anterior
-                                grupo = "Flora") %>% # marcando o grupo
+                                componente = "Flora") %>% # marcando o componente
                          filter(!is.na(ID))  # excluindo linhas que não contém ID númerico
 # Estas linhas são geradas por cabeçalhos e outras informações na tabela
 
 ## FAUNA --------------------------------------------------------------------------------------
 
+### FAUNA TERRESTRE -----------------------------------------------------------------------------------------------------------
 
-df_fauna_P148 <- df_fauna_P148 %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
-                                    lista_anterior = ifelse(lista_anterior == "*", "sim", "nao"),# alterando marcação de listagem anterior
-                                grupo = "Fauna") %>%  # marcando o grupo 
-                             filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
+fauna_terrestre_P148 <- fauna_terrestre_P148 %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
+                                                        lista_anterior = ifelse(lista_anterior == "*", "sim", "nao"),# alterando marcação de listagem anterior
+                                                        componente = "Fauna", # marcando o componente
+                                                        grupo = ifelse(ID >= 1 & ID <= 275, "Invertebrados terrestres", 
+                                                                       ifelse(ID >= 276 & ID <= 334 , "Anfibios",
+                                                                              ifelse(ID >= 335 & ID <= 405, "Repteis",
+                                                                                     ifelse(ID >= 406 & ID <= 662, "Aves",
+                                                                                            ifelse(ID >= 663 & ID <= 764, "Mamiferos", 
+                                                                                                   NA)))))) %>%  # marcando os grupo
+                                                 filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
 # Estas linhas são geradas por cabeçalhos e outras informações na tabela
+
+### FAUNA AQUATICA ---------------------------------------------------------------------------------------------------
+
+fauna_aquatica_P148 <- fauna_aquatica_P148 %>% mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
+                                                        lista_anterior = ifelse(lista_anterior == "*", "sim", "nao"),# alterando marcação de listagem anterior
+                                                        componente = "Fauna", # marcando o componente
+                                                        grupo = ifelse(ID >= 1 & ID <= 97, "Invertebrados aquaticos", 
+                                                                       ifelse(ID >= 98 & ID <= 485 , "Peixes", NA))) %>%  # marcando os grupo
+ filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
+# Estas linhas são geradas por cabeçalhos e outras informações na tabela
+
 
 # UNINDO OS DOIS GRUPOS ---------------------------------------------------------------------
 
 lista_ameaca_BR_P148 <- df_fauna_P148 %>% bind_rows(df_flora_P148) %>% 
                                           select(c(grupo, especie, familia, ordem, categoria, lista_anterior)) %>% 
-                                          rename(Portaria_148_07.06.22 = categoria)
+                                          rename(categoria_portaria148 = categoria)
 
 
 
