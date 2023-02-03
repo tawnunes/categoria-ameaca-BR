@@ -27,15 +27,15 @@ tabelas_portaria148 <- url %>%
                     html_table(trim = T)
 
 # conferinfo o número de colunas de cada tabela
-View(tabelas_portaria[[1]])
-lapply(tabelas_portaria, ncol)
+View(tabelas_portaria148[[1]])
+lapply(tabelas_portaria148, ncol)
 
 # FLORA -------------------------------------------------------------
 
 # após avaliar os data frames gerados é possivel observar que os dados
 # referentes a flora estão contidos nos itens de 1 a 14 da lista.
 
-lista_flora <- tabelas_portaria[c(1:14)]
+lista_flora <- tabelas_portaria148[c(1:14)]
 lapply(lista_flora, ncol)
 # View(lista_flora[[1]])
 
