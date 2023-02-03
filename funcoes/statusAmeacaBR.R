@@ -10,6 +10,9 @@
 # CONFERIR STATUS DE AMEAÇA
 
 statusAmeacaBR <- function(lista){
+ 
+ lista <- read.csv2(lista)
+ 
  lista_ameacadas <- read.csv("./dados/processados/lista_especies_ameacadas.csv")
  
  lista_ameacadas <- lista_ameacadas %>% select(c(especie, categoria)) %>% 
@@ -22,4 +25,3 @@ statusAmeacaBR <- function(lista){
  
  print("A lista conferida encontra-se no seu diretorio")
 }
-
