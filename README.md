@@ -1,11 +1,13 @@
 ## Lista Nacional de Espécies Ameaçadas Sob a Perspectiva da Acessibilidade e Sistematização de Dados
 
 
+<<<<<<< HEAD
 **Autora:** Tawane Yara Nunes (taw.ynunes@gmail.com)            **Status:** Em andamento
 
 **Orientadora:** Ana Julia Righetto
 
-### Descrição
+
+#### Descrição
 
 O presente projeto foi desenvolvido como Trabalho de Conclusão de Curso para obtenção do título de especialista em Data Science & Analytics pela Universidade de São Paulo.
 
