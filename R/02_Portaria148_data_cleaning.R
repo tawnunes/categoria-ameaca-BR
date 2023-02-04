@@ -9,14 +9,15 @@
 # Requerimentos: execução do sprit "extrair_tabela_website.R"
 
 # PACOTES ESPECÍFICOS -----------------------------------------------------------------------
+# library(tidyverse)
 
-library(tidyverse)
+source("./R/00_carregar_pacotes.R")
 
 # IMPORTANTO DADOS BRUTOS -------------------------------------------------------------------
 
 flora_P148 <- read.csv("./dados/raw/lista_flora_raw.csv")
 
-fauna_terrestre_P148 <- read.csv("./dados/raw/lista_fauna_terrestre_raw.csv")
+fauna_geral_P148 <- read.csv("./dados/raw/lista_fauna_geral_raw.csv")
 
 fauna_aquatica_P148 <- read.csv("./dados/raw/lista_fauna_aquatica_raw.csv")
 
@@ -32,9 +33,9 @@ flora_P148 <- flora_P148 %>% mutate(ID = as.numeric(ID), # transformando a colun
 
 ## FAUNA --------------------------------------------------------------------------------------
 
-### FAUNA TERRESTRE -----------------------------------------------------------------------------------------------------------
+### FAUNA GERAL -----------------------------------------------------------------------------------------------------------
 
-fauna_terrestre_ameacada <- fauna_terrestre_P148 %>% filter(categoria != "EX"|categoria != "RE") %>% 
+fauna_geral_ameacada <- fauna_geral_P148 %>% filter(categoria != "EX"|categoria != "RE") %>% 
                                                  mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
                                                         lista_anterior = ifelse(lista_anterior == "*", "sim", "nao"),# alterando marcação de listagem anterior
                                                         componente = "Fauna", # marcando o componente
@@ -47,7 +48,7 @@ fauna_terrestre_ameacada <- fauna_terrestre_P148 %>% filter(categoria != "EX"|ca
                                                  filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
 # Estas linhas são geradas por cabeçalhos e outras informações na tabela
 
-extintas <- fauna_terrestre_P148 %>% filter(categoria == "EX"|categoria == "RE") %>%
+fauna_geral_extinta <- fauna_geral_P148 %>% filter(categoria == "EX"|categoria == "RE") %>%
                                      mutate(ID = as.numeric(ID),
                                             grupo = ifelse(ordem == "Anura", "Anfibios",
                                                     ifelse(ordem == "Charadriiformes" | ordem == "Passeriformes" |
@@ -61,13 +62,13 @@ fauna_aquatica_P148 <- fauna_aquatica_P148 %>% mutate(ID = as.numeric(ID), # tra
                                                         componente = "Fauna", # marcando o componente
                                                         grupo = ifelse(ID >= 1 & ID <= 97, "Invertebrados aquaticos", 
                                                                        ifelse(ID >= 98 & ID <= 485 , "Peixes", NA))) %>%  # marcando os grupo
- filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
+                                               filter(!is.na(ID)) # excluindo linhas que não contém ID númerico
 # Estas linhas são geradas por cabeçalhos e outras informações na tabela
 
 
-# UNINDO OS DOIS GRUPOS ---------------------------------------------------------------------
+# UNINDO OS DOIS COMPONENTES ---------------------------------------------------------------------
 
-lista_ameaca_BR_P148 <- fauna_terrestre_ameacada %>% bind_rows(list(extintas,fauna_aquatica_P148, flora_P148)) %>% 
+lista_ameaca_BR_P148 <- fauna_geral_ameacada %>% bind_rows(list(fauna_geral_extinta,fauna_aquatica_P148, flora_P148)) %>% 
                                           select(c(componente,grupo,familia, ordem, especie, categoria, lista_anterior)) %>% 
                                           rename(categoria_portaria148 = categoria)
 
@@ -77,13 +78,13 @@ lista_ameaca_BR_P148 <- fauna_terrestre_ameacada %>% bind_rows(list(extintas,fau
 
 # EXPORTANDO TABELA DE RESULTADOS -----------------------------------------------------------
 
-if (!dir.exists("dados/processados/portaria_148")) dir.create("dados/processados/portaria_148")
+if (!dir.exists("dados/processados/")) dir.create("dados/processados/")
 
-write.csv(flora_P148, "dados/processados/portaria_148/lista_flora_148.csv", 
+write.csv(flora_P148, "dados/processados/lista_flora_148.csv", 
           row.names = FALSE)
 
-write.csv(bind_rows(list(fauna_terrestre_ameacada, fauna_aquatica_P148, extintas)), "dados/processados/portaria_148/lista_fauna_148.csv", 
+write.csv(bind_rows(list(fauna_geral_ameacada, fauna_aquatica_P148, fauna_geral_extinta)), "dados/processados/lista_fauna_148.csv", 
           row.names = FALSE)
 
-write.csv(lista_ameaca_BR_P148, "dados/processados/portaria_148/lista_especies_ameacadas_P148.csv", 
+write.csv(lista_ameaca_BR_P148, "dados/processados/lista_especies_ameacadas_P148.csv", 
           row.names = FALSE)

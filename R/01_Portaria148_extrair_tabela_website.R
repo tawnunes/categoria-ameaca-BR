@@ -8,7 +8,7 @@
 
 # PACOTES ESPECÍFICOS -----------------------------------------------
 
-# library(xml2) # ler o html do site selecionado
+library(xml2) # ler o html do site selecionado
 library(rvest) # extrair os elementos do html
 library(tidyverse) # instala outros pacores do R, principalmente para 
 # Manipulação de dados
@@ -60,38 +60,38 @@ str(df_flora)
 
 # FAUNA -------------------------------------------------------------
 
-## FAUNA TERRESTRE ---------------------------------------------------
+## FAUNA GERAL ---------------------------------------------------
 # após avaliar os data frames gerados é possivel observar que os dados
 # referentes a fauna terrestre estão contidos nos itens de 15 a 19 da lista.
 
-lista_fauna_terrestre <- tabelas_portaria148[c(15:19)]
-#View(lista_fauna_terrestre[[20]])
+lista_fauna_geral <- tabelas_portaria148[c(15:19)]
 
-lapply(lista_fauna_terrestre, ncol) # é possível observar que todos os dataframe tem 6 colunas
+
+lapply(lista_fauna_geral, ncol) # é possível observar que todos os data frames tem 6 colunas
 # exceto o data frame 5 que apresenta 11 colunas devido a repetição
 # View(lista_fauna_terrestre[[5]])
 
 # selecionando apenas as colunas de interesse e renomeando para facilitar a junção dos data frames
-lista_fauna_terrestre[[5]] <- lista_fauna_terrestre[[5]] %>% select(-c(4,6,8,10,11)) %>% 
-                                         rename(X4 = X5,
-                                                X5 = X7,
-                                                X6 = X9)
+lista_fauna_geral[[5]] <- lista_fauna_geral[[5]] %>% select(-c(4,6,8,10,11)) %>% 
+                                                     rename(X4 = X5,
+                                                            X5 = X7,
+                                                            X6 = X9)
 
 
 # Mudandos para mesma classe todas as colunas
 # Passo necessário para juntar os data frames sem erros
-lista_fauna_terrestre <- lapply(lista_fauna_terrestre, function(x) { # aplicando a função em todos os data frames da lista
+lista_fauna_geral <- lapply(lista_fauna_geral, function(x) { # aplicando a função em todos os data frames da lista
  lapply(x, as.character) # aplicando a função em todas as colunas do data frame
 })
 
 # Juntando todos os data frames da lista
-df_fauna_terrestre<- bind_rows(lista_fauna_terrestre)
+df_fauna_geral<- bind_rows(lista_fauna_geral)
 
 
 # Alterando os nomes das colunas
 nomes_fauna <- c("ID", "lista_anterior", "ordem", "familia", "especie", "categoria")
 
-names(df_fauna_terrestre) <- nomes_fauna
+names(df_fauna_geral) <- nomes_fauna
 
 
 ## FAUNA AQUATICA ---------------------------------------------------
@@ -124,8 +124,10 @@ if (!dir.exists("dados/raw")) dir.create("dados/raw")
 write.csv(df_flora, "dados/raw/lista_flora_raw.csv", 
           row.names = FALSE)
 
-write.csv(df_fauna_terrestre, "dados/raw/lista_fauna_terrestre_raw.csv", 
+write.csv(df_fauna_geral, "dados/raw/lista_fauna_geral_raw.csv", 
           row.names = FALSE)
 
 write.csv(df_fauna_aquatica, "dados/raw/lista_fauna_aquatica_raw.csv", 
           row.names = FALSE)
+
+rm(list=ls()) # limpando o environment

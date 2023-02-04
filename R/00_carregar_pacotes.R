@@ -24,4 +24,4 @@ if(sum(as.numeric(!pacotes %in% installed.packages())) != 0){
 } else {
  sapply(pacotes, require, character = T)}
 
-rm() # limpar o ambiente para as proximas etapas 
+rm(pacotes) # limpar o ambiente para as proximas etapas 
