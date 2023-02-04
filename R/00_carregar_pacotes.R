@@ -8,7 +8,11 @@
 
 # Carregamento de todos os pacotes necessários a execução deste projeto
 
-pacotes <- c("") 
+pacotes <- c("tidyverse", # instala outros pacores do R, principalmente  
+             # para anipulação de dados
+             "xml2",
+             "rvest"
+             ) 
 
 
 if(sum(as.numeric(!pacotes %in% installed.packages())) != 0){
