@@ -44,7 +44,7 @@ Os arquivos ```.csv``` processados encontra-se em ```dados/processados```
 No diretório ```docs```você encontra uma versão ```.pdf``` da Portaria MMA n° 148
 
 No diretório ```funcoes```você encontra a função criada para consulta da lista de espécies
-chamada ```statusAmeacaBR```, os dados utlizados para teste da função encontram-se em ```dados/teste```
+chamada ```categoriaAmeacaBR```, os dados utlizados para teste da função encontram-se em ```dados/teste```
 
 No diretório ```R``` você encontra os scripts
 
