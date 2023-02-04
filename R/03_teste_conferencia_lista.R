@@ -8,15 +8,6 @@
 
 # Consulta na tabela
 
-# PACOTES----------------------------------------------------------------
-library(tidyverse)
-
-
-# IMPORTANDO DADOS ------------------------------------------------------
-
-especies_conferir <- read.csv2("./dados/teste/FaunaAtropelada.csv")
-
-
 # TESTE DA FUNÇÃO ---------------------------------------------------------------
 
 source("./funcoes/statusAmeacaBR.R")

@@ -6,12 +6,6 @@
 # Autora: Tawane Yara Nunes
 # E-mail: taw.ynunes@gmail.com
 
-# PACOTES ESPECÍFICOS -----------------------------------------------
-
-library(xml2) # ler o html do site selecionado
-library(rvest) # extrair os elementos do html
-library(tidyverse) # instala outros pacores do R, principalmente para 
-# Manipulação de dados
 
 # IMPORTANTDO HTML -------------------------------------------------
 # REFERENTE A PORTARIA MMA N° 148 
