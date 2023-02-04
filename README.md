@@ -1,6 +1,8 @@
 ## Lista Nacional de Espécies Ameaçadas Sob a Perspectiva da Acessibilidade e Sistematização de Dados
 
-<div style="text-align: right"> **Status:** Em andamento </div>
+```
+**Status:** Em andamento
+```
 
 **Autora:** Tawane Yara Nunes (taw.ynunes@gmail.com)           
 
