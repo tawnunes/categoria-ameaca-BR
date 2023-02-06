@@ -1,10 +1,7 @@
 ## Lista Nacional de Espécies Ameaçadas Sob a Perspectiva da Acessibilidade e Sistematização de Dados
 
 
-[![English Version](https://img.shields.io/badge/English%20Version-Here!-9cf)](README.en.md)
-
-
-![Status](https://img.shields.io/badge/Status-Em%20andamento-green)
+![Status](https://img.shields.io/badge/Status-Em%20andamento-green)  [![English Version](https://img.shields.io/badge/English%20Version-Here!-9cf)](README.en.md)
 
 
 **Autora:** Tawane Yara Nunes (taw.ynunes@gmail.com)           
