@@ -1,7 +1,7 @@
 ## Lista Nacional de Espécies Ameaçadas Sob a Perspectiva da Acessibilidade e Sistematização de Dados
 
 
-```Status:``` *Em andamento*
+```Status:``` *Em andamento*           [English Version]()
 
 
 **Autora:** Tawane Yara Nunes (taw.ynunes@gmail.com)           
@@ -16,9 +16,9 @@ O presente projeto foi desenvolvido como Trabalho de Conclusão de Curso para ob
 
 ### Background
 
-No Brasil as listas de espécies ameaçadas são elaboradas desde 1968 e são oficializadas por meio de Portarias. A lista atualizada e vigente foi oficializada pela [Portaria MMA n° 148 de junho de 2022](https://www.in.gov.br/en/web/dou/-/portaria-mma-n-148-de-7-de-junho-de-2022-406272733), disponível no website do governo federal. Embora os dados possam ser acessados com facilidade, as listas são disponibilizadas apenas em tabelas formatadas para visulização. Desta forma, alguém interessado em saber a categoria de ameaça de uma espécie, precisa fazer uma busca manual diretamente no website ou no arquivo PDF que pode ser baixado.
+No Brasil as listas de espécies ameaçadas são elaboradas desde 1968 e são oficializadas por meio de Portarias. A lista atualizada e vigente foi oficializada pela [Portaria MMA n° 148 de junho de 2022](https://www.in.gov.br/en/web/dou/-/portaria-mma-n-148-de-7-de-junho-de-2022-406272733), disponível no website do governo federal. Embora os dados possam ser acessados com facilidade, as listas são disponibilizadas apenas em tabelas formatadas para visualização. Desta forma, alguém interessado em saber a categoria de ameaça de uma espécie, precisa fazer uma busca manual diretamente no website ou no arquivo PDF que pode ser baixado.
 
-Dados em websites (formato HTML) ou em arquivo PDF são considerados semiestruturados e não-estruturados respectivamente, o que os torna mais difíceis de manipular e analizar do que dados estruturados e formatados em arquivos CSV e XLS. Assim, utilizar estes dados requer conhecimento mais avançados de ferramentas para conversão e reestruturação.
+Dados em websites (formato HTML) ou em arquivo PDF são considerados semiestruturados e não-estruturados respectivamente, o que os torna mais difíceis de manipular e analisar do que dados estruturados e formatados em arquivos CSV e XLS. Assim, utilizar estes dados requer conhecimento mais avançados de ferramentas para conversão e reestruturação.
 
 ### Objetivos
 
