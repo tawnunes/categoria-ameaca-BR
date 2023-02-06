@@ -1,5 +1,7 @@
 ## National Red List of Endangered Species from the Perspective o Data Acessibility and Systematization
 
+[Versão em Português](README.md)
+
 ```Status:``` *In progess*
 
 
@@ -11,6 +13,8 @@
 ### Description
 
 This project was developed as an end-of-course work for obtaining the title of Data Science & Analytics specialist by the University of São Paulo.
+
+Note: all comments and directory and file names are in Portuguese(BR) because the project is focused on Brazilian users
 
 ### Background
 
