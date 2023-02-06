@@ -1,5 +1,5 @@
-# Algoritmo para verificação e confirmação do status de ameaça 
-# a nível nacional da fauna e flora brasileira
+# Lista Nacional de Espécies Ameaçadas Sob a Perspectiva da Acessibilidade e 
+# Sistematização de Dados
 # 
 # MBA em Data Science & Analytics - USP
 # 

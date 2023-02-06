@@ -1,5 +1,5 @@
-# Algoritmo para verificação e confirmação do status de ameaça 
-# a nível nacional da fauna e flora brasileira
+# Lista Nacional de Espécies Ameaçadas Sob a Perspectiva da Acessibilidade e 
+# Sistematização de Dados
 # 
 # MBA em Data Science & Analytics - USP
 # 
@@ -9,7 +9,6 @@
 
 # IMPORTANTDO HTML -------------------------------------------------
 # REFERENTE A PORTARIA MMA N° 148 
-# ATUALIZAÇÃO DA LISTA DE ESPÉCIES AMEAÇADAS DE EXTINÇÃO
 
 url <- "https://www.in.gov.br/en/web/dou/-/portaria-mma-n-148-de-7-de-junho-de-2022-406272733" 
 
