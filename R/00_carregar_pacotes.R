@@ -11,7 +11,8 @@
 pacotes <- c("tidyverse", # instala outros pacores do R, principalmente  
              # para anipulação de dados
              "xml2",
-             "rvest"
+             "rvest",
+             "ggplot2",
              ) 
 
 
