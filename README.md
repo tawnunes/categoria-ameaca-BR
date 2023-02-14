@@ -1,4 +1,4 @@
-## Lista Nacional de Espécies Ameaçadas Sob a Perspectiva da Acessibilidade e Sistematização de Dados
+## Lista Nacional de Espécies Ameaçadas Sob a Perspectiva do Acesso e Processamento de Dados
 
 
 ![Status](https://img.shields.io/badge/Status-Em%20andamento-green)  [![English Version](https://img.shields.io/badge/English%20Version-Here!-9cf)](README.en.md)
