@@ -3,6 +3,8 @@
 
 ![Status](https://img.shields.io/badge/Status-Em%20andamento-green)  [![English Version](https://img.shields.io/badge/English%20Version-Here!-9cf)](README.en.md)
 
+[Download lista .csv](dados/processados/lista_especies_ameacadas_P148.csv)
+
 
 **Autora:** Tawane Yara Nunes (taw.ynunes@gmail.com)           
 
