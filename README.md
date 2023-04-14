@@ -1,6 +1,3 @@
----
-theme: minima
----
 ## Lista Nacional de Espécies Ameaçadas Sob a Perspectiva do Acesso e Processamento de Dados
 
 
