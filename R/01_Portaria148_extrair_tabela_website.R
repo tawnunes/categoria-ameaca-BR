@@ -1,5 +1,5 @@
-# Lista Nacional de Espécies Ameaçadas Sob a Perspectiva da Acessibilidade e 
-# Sistematização de Dados
+# Lista Nacional de Espécies Ameaçadas Sob a Perspectiva do Acesso e 
+# Processamento de Dados
 # 
 # MBA em Data Science & Analytics - USP
 # 
@@ -87,28 +87,28 @@ nomes_fauna <- c("ID", "lista_anterior", "ordem", "familia", "especie", "categor
 names(df_fauna_geral) <- nomes_fauna
 
 
-## FAUNA AQUATICA ---------------------------------------------------
+## INVERTEBRADOS AQUÁTICOS E PEIXES ---------------------------------------------------
 # após avaliar os data frames gerados é possivel observar que os dados
-# referentes a fauna aquatica estão contidos nos itens de 20 a 22 da lista.
+# referentes a invertebrados aquáticos e peixes estão contidos nos itens de 20 a 22 da lista.
 
-lista_fauna_aquatica <- tabelas_portaria148[c(20:22)]
+lista_invert_peixes <- tabelas_portaria148[c(20:22)]
 # View(lista_fauna_aquatica[[1]])
 
-lapply(lista_fauna_aquatica, ncol) 
+lapply(lista_invert_peixes, ncol) 
 
 # Mudandos para mesma classe todas as colunas
 # Passo necessário para juntar os data frames sem erros
-lista_fauna_aquatica <- lapply(lista_fauna_aquatica, function(x) { # aplicando a função em todos os data frames da lista
+lista_invert_peixes <- lapply(lista_invert_peixes, function(x) { # aplicando a função em todos os data frames da lista
  lapply(x, as.character) # aplicando a função em todas as colunas do data frame
 })
 
 
 # Juntando todos os data frames da lista
-df_fauna_aquatica <- bind_rows(lista_fauna_aquatica)
+df_invert_peixes <- bind_rows(lista_invert_peixes)
 
 
 # Alterando os nomes das colunas
-names(df_fauna_aquatica) <- nomes_fauna
+names(df_invert_peixes) <- nomes_fauna
 
 
 # EXPORTANDO DADOS BRUTOS-------------------
@@ -120,7 +120,7 @@ write.csv(df_flora, "dados/raw/lista_flora_raw.csv",
 write.csv(df_fauna_geral, "dados/raw/lista_fauna_geral_raw.csv", 
           row.names = FALSE)
 
-write.csv(df_fauna_aquatica, "dados/raw/lista_fauna_aquatica_raw.csv", 
+write.csv(df_invert_peixes, "dados/raw/lista_invert_peixes_raw.csv", 
           row.names = FALSE)
 
 rm(list=ls()) # limpando o environment
