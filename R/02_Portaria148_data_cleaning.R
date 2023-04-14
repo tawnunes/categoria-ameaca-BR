@@ -19,7 +19,7 @@ flora_P148 <- read.csv("./dados/raw/lista_flora_raw.csv")
 
 fauna_geral_P148 <- read.csv("./dados/raw/lista_fauna_geral_raw.csv")
 
-fauna_aquatica_P148 <- read.csv("./dados/raw/lista_fauna_aquatica_raw.csv")
+fauna_invert_peixes_P148 <- read.csv("./dados/raw/lista_invert_peixes_raw.csv")
 
 # DATA CLEANING -----------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ fauna_geral_extinta <- fauna_geral_P148 %>%
 
 ### FAUNA AQUATICA ---------------------------------------------------------------------------------------------------
 
-fauna_aquatica_P148 <- fauna_aquatica_P148 %>% 
+fauna_invert_peixes_P148 <- fauna_invert_peixes_P148 %>% 
                        mutate(ID = as.numeric(ID), # transformando a coluna ID em numeric para facilitar a limpeza
                               lista_anterior = ifelse(lista_anterior == "*", "sim", "nao"),# alterando marcação de listagem anterior
                               componente = "Fauna", # marcando o componente
