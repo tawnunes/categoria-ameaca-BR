@@ -4,6 +4,6 @@
 .RData
 .Ruserdata
 #avoid addind html
-*.html
+# *.html
 #all zip files
 *.zip
