@@ -1,5 +1,5 @@
-# Lista Nacional de Espécies Ameaçadas Sob a Perspectiva da Acessibilidade e 
-# Sistematização de Dados
+# Lista Nacional de Espécies Ameaçadas Sob a Perspectiva do Acesso e 
+# Processamento de Dados
 # 
 # MBA em Data Science & Analytics - USP
 # 
