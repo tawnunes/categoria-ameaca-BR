@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: National Red List of Endangered Species from the Perspective o Data Acess and Processing
 description: This is just another page
 permalink: /english
