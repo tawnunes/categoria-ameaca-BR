@@ -20,6 +20,12 @@
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       {% if site.github.is_project_page %}
         <a href="{{ site.github.repository_url }}" class="btn">Veja no GitHub</a>
+    <form>
+      <label for="search">Search:</label>
+      <input type="text" id="search" name="search">
+      <button type="submit">Submit</button>
+      </form>
+
       {% endif %}
       {% if site.show_downloads %}
         <a href="{{ site.github.csv_url }}" class="btn">Download da Lista em CSV</a>
