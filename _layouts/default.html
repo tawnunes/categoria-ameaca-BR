@@ -20,18 +20,35 @@
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       {% if site.github.is_project_page %}
         <a href="{{ site.github.repository_url }}" class="btn">Veja no GitHub</a>
-    <form>
-      <label for="search">Search:</label>
-      <input type="text" id="search" name="search">
-      <button type="submit">Submit</button>
-      </form>
-
+    
       {% endif %}
       {% if site.show_downloads %}
         <a href="{{ site.github.csv_url }}" class="btn">Download da Lista em CSV</a>
 <!--        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
         <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a> -->
       {% endif %}
+      <form>
+      <label for="search">Insira o nome da espécie:</label>
+      <input type="text" id="search" name="search">
+      <button type="submit">Submeter</button>
+      </form>
+
+<div id="resultado"></div>
+
+<script>
+  // Captura o evento de envio do formulário
+  document.querySelector('form').addEventListener('submit', (event) => {
+    event.preventDefault(); // Evita o envio padrão do formulário
+    const searchValue = document.getElementById('search').value;
+    fetch(`./R/03_buscar_especie.R?search=${searchValue}`) // Chama o script R com o valor de pesquisa como parâmetro
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('resultado').innerHTML = data; // Exibe o resultado no elemento HTML
+      });
+  });
+</script>
+
+
     </header>
 
     <main id="content" class="main-content" role="main">
