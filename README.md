@@ -4,12 +4,12 @@
 
 ![Status](https://img.shields.io/badge/Status-Em%20andamento-green)  [![English Version](https://img.shields.io/badge/English%20Version-Here!-9cf)](README.en.md)
 
-[comment]: # [![Download lista .csv](https://img.shields.io/badge/Download%20da%20lista%20em%20.csv-Clique%20aqui!-important)](dados/processados/lista_especies_ameacadas_P148.csv) 
+[comment]: #[![Download lista .csv](https://img.shields.io/badge/Download%20da%20lista%20em%20.csv-Clique%20aqui!-important)](dados/processados/lista_especies_ameacadas_P148.csv) 
 
-[comment]: # [Acesse o repositório no GitHub](https://github.com/tawnunes/categoria-ameaca-BR)
+[comment]: #[Acesse o repositório no GitHub](https://github.com/tawnunes/categoria-ameaca-BR)
 
 
-**Autora:** Tawane Yara Nunes (taw.ynunes@gmail.com)
+**Autora:** Tawane Yara Nunes [📧](mailto:taw.ynunes@gmail.com)
 
 **Orientadora:** Ana Julia Righetto
 
