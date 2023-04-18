@@ -85,7 +85,7 @@ fauna_cat <- especies_ameacadas %>%
  group_by(categoria_portaria148) %>% 
  tally() %>% 
  arrange(desc(n)) %>%
- mutate(freq_rel = round((n/sum(n))*100))
+ mutate(freq_rel = round((n/sum(n))*100)) %>% 
 ungroup()
 
 fauna_cat
