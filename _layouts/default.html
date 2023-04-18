@@ -27,45 +27,6 @@
 <!--        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
         <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a> -->
       {% endif %}
-      <form method="post">
-      <label for="search">Insira o nome da espécie:</label>
-      <input type="text" id="search" name="search">
-      <button type="submit">Submeter</button>
-      </form>
-
-      <div>
-        <?php
-        if (isset($_POST['submit'])) {
-          // Lê o arquivo CSV e armazena os dados em uma matriz
-          $file = fopen('dados/processados/lista_especies_ameacadas_P148.csv', 'r');
-          $header = fgetcsv($file);
-          $data = array();
-          while ($row = fgetcsv($file)) {
-            $data[] = array_combine($header, $row);
-          }
-          fclose($file);
-          // Procura por correspondências nos dados do CSV
-          $searchValue = $_POST['search'];
-          $searchResults = array();
-          foreach ($data as $row) {
-            if (stripos($row['especie'], $searchValue) !== false) {
-              $searchResults[] = $row['categoria_portaria148'];
-            }
-          }
-          // Exibe os resultados da pesquisa
-          if (!empty($searchResults)) {
-            echo "<ul>";
-            foreach ($searchResults as $result) {
-              echo "<li>" . $result . "</li>";
-            }
-            echo "</ul>";
-          } else {
-            echo "Nenhum resultado encontrado. Confira o nome da espécie.";
-          }
-        }
-        ?>
-      </div>
-
     </header>
 
     <main id="content" class="main-content" role="main">
