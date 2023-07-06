@@ -12,7 +12,8 @@ pacotes <- c("tidyverse", # instala outros pacores do R, principalmente
              # para anipulação de dados
              "xml2",
              "rvest",
-             "ggplot2"
+             "ggplot2",
+             "openxlsx" # exportar os dados em xlsx
              ) 
 
 

@@ -79,7 +79,7 @@ fauna_invert_peixes_P148 <- fauna_invert_peixes_P148 %>%
 # UNINDO OS DOIS COMPONENTES ---------------------------------------------------------------------
 
 lista_ameaca_BR_P148 <- fauna_geral_ameacada %>%
-                        bind_rows(list(fauna_geral_extinta,fauna_aquatica_P148, flora_P148)) %>% 
+                        bind_rows(list(fauna_geral_extinta,fauna_invert_peixes_P148, flora_P148)) %>% 
                         select(c(componente,grupo,familia, ordem, especie, categoria, lista_anterior)) %>% 
                         rename(categoria_portaria148 = categoria)
 
@@ -99,3 +99,5 @@ write.csv(bind_rows(list(fauna_geral_ameacada, fauna_aquatica_P148, fauna_geral_
 
 write.csv(lista_ameaca_BR_P148, "dados/processados/lista_especies_ameacadas_P148.csv", 
           row.names = FALSE)
+
+write.xlsx(lista_ameaca_BR_P148, "dados/processados/lista_especies_ameacadas_P148.xlsx")
