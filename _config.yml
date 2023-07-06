@@ -5,3 +5,4 @@ plugins:
 show_downloads: true
 github:
   csv_url: https://tawnunes.github.io/categoria-ameaca-BR/dados/processados/lista_especies_ameacadas_P148.csv
+  xlsx_url: https://tawnunes.github.io/categoria-ameaca-BR/dados/processados/lista_especies_ameacadas_P148.xlsx
